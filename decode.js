@@ -22,8 +22,11 @@ function decodeString(stringToDecode) {
     const stack = [];
 
     while (i < stringToDecode.length) {
+        // check that the iteration of i does not contain a closing bracket. 
         if (stringToDecode[i] !== ']') {
             stack.push(stringToDecode[i]);
+            
+        // if i contains a closing bracket, begin concatenation process. Break on detection of opening bracket
         } else {
             let [res, rep, top] = ['', '', ''];
             
@@ -36,6 +39,7 @@ function decodeString(stringToDecode) {
                 }
             }
 
+            // if i contains a closing bracket, begin concatenation process. Break on detection of non-numerical value
             while(stack.length) {
                 top = stack.pop();
                 if(top >= '0' && top <= '9') {
@@ -46,7 +50,9 @@ function decodeString(stringToDecode) {
                 }
             }
 
+            // parse res as an integer. use .repeat method on remaining characters of res for the number of ints parsed.
             res = res.repeat(Number.parseInt(rep));
+            // push res to the stack
             stack.push(res);
         }
         i++ 
@@ -54,9 +60,12 @@ function decodeString(stringToDecode) {
 
     res = '';
     while (stack.length) {
+        // while stack has a valid length, pop the last item in stack and concatenate with current res
         res = stack.pop() + res;
     }
+    // run the program to view result in the console
     console.log(res);
 }
 
+// instantiate the function
 decodeString(stringToDecode);
