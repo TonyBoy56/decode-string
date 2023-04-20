@@ -15,9 +15,6 @@
 // Example 3: Input: s = "2[abc]3[cd]ef"
 // Output: "abcabccdcdcdef"
 
-// let numStack = [];
-// let stringStack = [];
-
 const stringToDecode = "3[a]2[bc]"
 
 function decodeString(stringToDecode) {
@@ -50,7 +47,6 @@ function decodeString(stringToDecode) {
             }
 
             res = res.repeat(Number.parseInt(rep));
-            console.log(res);
             stack.push(res);
         }
         i++ 
@@ -60,7 +56,7 @@ function decodeString(stringToDecode) {
     while (stack.length) {
         res = stack.pop() + res;
     }
-    // console.log(res);
+    console.log(res);
 }
 
 decodeString(stringToDecode);
